@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'application'
+    id 'maven-publish'
+    id 'dev.jbang' version '0.2.0'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+apply plugin : "java" 
+
+mainClassName = "com.philips.integrations.Application" 
+
+group = 'com.philips.integrations'
+version = '0.0.1-SNAPSHOT'
+
+java.sourceCompatibility = JavaVersion.VERSION_17
+java.targetCompatibility = JavaVersion.VERSION_17
+
+repositories {
+
+    mavenLocal()    
+    mavenCentral()
+    maven {
+        name 'nexus-releases'
+        url "http://repo.portal.whebdc.com.br/content/repositories/releases/"
+        allowInsecureProtocol = true
+    }
+
+}
+
+dependencies {
+	
+    implementation libs.bundles.core
+    implementation libs.bundles.tie
+    implementation libs.bundles.log
+    
+    testImplementation libs.bundles.test
+	
+}
+
+shadowJar {
+    zip64 true
+
+    exclude('application.properties')
+    exclude('log4j2.properties') 
+
+    mergeServiceFiles()
+}

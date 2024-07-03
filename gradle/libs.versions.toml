@@ -1,0 +1,34 @@
+[versions]
+camel = "4.6.0"
+tie = "1.0.3"
+jackson = "2.17.1"
+log4j = "2.23.1"
+telemetry = "1.31.0"
+
+[libraries]
+camel-bom = { group = "org.apache.camel", name = "camel-bom", version.ref = "camel" }
+camel-main = { group = "org.apache.camel", name = "camel-main", version.ref = "camel" }
+camel-health = { group = "org.apache.camel", name = "camel-health", version.ref = "camel" }
+camel-opentelemetry = { group = "org.apache.camel", name = "camel-opentelemetry", version.ref = "camel" }
+camel-debug = { group = "org.apache.camel", name = "camel-debug", version.ref = "camel" }
+camel-test = { group = "org.apache.camel", name = "camel-test-junit5", version.ref = "camel" }
+camel-jackson = { group = "org.apache.camel", name = "camel-jackson", version.ref = "camel" }
+camel-netty-http = { group = "org.apache.camel", name = "camel-netty-http", version.ref = "camel" }
+
+tie-commons = { group = "com.philips.tie", name = "tie-commons", version.ref = "tie" }
+tie-router = { group = "com.philips.tie", name = "tie-router", version.ref = "tie" }
+tie-logger = { group = "com.philips.tie", name = "tie-logger", version.ref = "tie" }
+tie-test = { group = "com.philips.tie", name = "tie-test", version.ref = "tie" }
+
+opentelemetry-javaagent = { group = "io.opentelemetry.javaagent", name = "opentelemetry-javaagent", version.ref = "telemetry" }
+jackson-datatype = { group = "com.fasterxml.jackson.datatype", name = "jackson-datatype-jsr310", version.ref = "jackson" }
+
+log4j-api = { group = "org.apache.logging.log4j", name = "log4j-api", version.ref = "log4j" }
+log4j-slf4j2-impl = { group = "org.apache.logging.log4j", name = "log4j-slf4j2-impl", version.ref = "log4j" }
+log4j-core = { group = "org.apache.logging.log4j", name = "log4j-core", version.ref = "log4j" }
+
+[bundles]
+core = ["camel-bom", "camel-main", "camel-health", "camel-opentelemetry", "camel-debug", "camel-test", "camel-jackson", "camel-netty-http", "jackson-datatype", "opentelemetry-javaagent"]
+tie = ["tie-commons", "tie-router", "tie-logger"]
+log = ["log4j-api", "log4j-slf4j2-impl", "log4j-core"]
+test = ["camel-test", "tie-test"]
